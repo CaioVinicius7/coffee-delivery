@@ -53,6 +53,10 @@ export const Topics = styled.div`
   grid-template-columns: repeat(2, 325px);
   gap: 1rem;
 
+  @media (max-width: 1075px) {
+    justify-items: center;
+  }
+
   div {
     display: flex;
     align-items: center;

@@ -25,6 +25,11 @@ export const EmptyCartButton = styled(BaseCartButton)<EmptyCardButtonProps>`
     props.colorScheme === "yellow"
       ? props.theme["yellow-light"]
       : props.theme["purple-dark"]};
+
+  &:hover {
+    background: ${(props) =>
+      props.colorScheme === "purple" && props.theme.purple};
+  }
 `;
 
 export const FullCartButton = styled(BaseCartButton)`
