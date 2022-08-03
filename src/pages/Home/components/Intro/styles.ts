@@ -73,6 +73,7 @@ export const Topics = styled.div`
 
   @media (max-width: 450px) {
     grid-template-columns: 1fr;
+    justify-items: left;
   }
 `;
 
@@ -97,4 +98,10 @@ export const ImgContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 500px) {
+    img {
+      width: 80vw;
+    }
+  }
 `;
