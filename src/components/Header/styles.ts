@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
+  max-width: 125rem;
+  margin: 0 auto;
+
   height: 6.5rem;
   padding: 2rem 10rem;
   font-family: "Roboto", sans-serif;
