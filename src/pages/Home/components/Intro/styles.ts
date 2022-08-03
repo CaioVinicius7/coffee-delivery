@@ -44,6 +44,13 @@ export const TitlesContainer = styled.div`
     align-items: center;
     text-align: center;
   }
+
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 2.5rem;
+      line-height: 3rem;
+    }
+  }
 `;
 
 export const Topics = styled.div`
