@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Minus, Plus } from "phosphor-react";
 
 import { NumberInputContainer } from "./styles";
@@ -6,7 +6,9 @@ import { NumberInputContainer } from "./styles";
 function NumberInput() {
   const [quantity, setQuantity] = useState(1);
 
-  function handleSubtractQuantity() {
+  function handleSubtractQuantity(event: FormEvent) {
+    event.preventDefault();
+
     if (quantity > 1) {
       setQuantity((state) => {
         return --state;
@@ -14,7 +16,9 @@ function NumberInput() {
     }
   }
 
-  function handleAddQuantity() {
+  function handleAddQuantity(event: FormEvent) {
+    event.preventDefault();
+
     if (quantity < 99) {
       setQuantity((state) => {
         return ++state;

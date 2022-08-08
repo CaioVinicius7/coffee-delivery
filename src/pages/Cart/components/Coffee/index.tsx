@@ -6,6 +6,10 @@ import coffee from "../../../../assets/coffee-1.svg";
 import { Trash } from "phosphor-react";
 
 function Coffee() {
+  function handleRemoveCoffee(event: any) {
+    event.preventDefault();
+  }
+
   return (
     <CoffeeContainer>
       <img src={coffee} alt="Coffee" />
@@ -18,7 +22,7 @@ function Coffee() {
 
         <div>
           <NumberInput />
-          <RemoveButton>
+          <RemoveButton onClick={handleRemoveCoffee}>
             <Trash size={18} />
             <span>Remover</span>
           </RemoveButton>
