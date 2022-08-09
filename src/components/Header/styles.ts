@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { darken } from "polished";
 
-export const HeaderContainer = styled.header`
+interface HeaderContainerProps {
+  changeColor: boolean;
+}
+
+export const HeaderContainer = styled.header<HeaderContainerProps>`
   max-width: 125rem;
   margin: 0 auto;
 
@@ -11,6 +16,15 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  background: ${(props) =>
+    props.changeColor ? darken(0.02, props.theme.background) : "transparent"};
+
+  box-shadow: ${(props) =>
+    props.changeColor ? "0 0 0 1px rgba(0, 0, 0, 0.1)" : "transparent"};
+  position: fixed;
+  z-index: 99999;
+  width: 100%;
 
   div {
     display: flex;

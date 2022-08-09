@@ -5,9 +5,13 @@ import { HeaderContainer, LocationSpan } from "./styles";
 
 import logo from "../../assets/logo.svg";
 
-function Header() {
+interface HeaderProps {
+  changeColor: boolean;
+}
+
+function Header({ changeColor }: HeaderProps) {
   return (
-    <HeaderContainer>
+    <HeaderContainer changeColor={changeColor}>
       <img src={logo} alt="Coffee Delivery Logo" />
 
       <div>

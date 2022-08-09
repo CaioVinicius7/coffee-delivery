@@ -4,7 +4,7 @@ export const ConfirmedRequestContainer = styled.main`
   max-width: 125rem;
   margin: 0 auto;
 
-  padding: 2rem 10rem;
+  padding: 8rem 10rem;
 
   h2 {
     margin-top: 2rem;
@@ -23,7 +23,7 @@ export const ConfirmedRequestContainer = styled.main`
   }
 
   @media (max-width: 1200px) {
-    padding: 0 4rem;
+    padding: 6rem 4rem;
   }
 
   @media (max-width: 700px) {
@@ -31,11 +31,11 @@ export const ConfirmedRequestContainer = styled.main`
   }
 
   @media (max-width: 600px) {
-    padding: 0 2rem;
+    padding: 6rem 2rem;
   }
 
   @media (max-width: 420px) {
-    padding: 0.75rem 1rem;
+    padding: 6rem 1rem;
   }
 `;
 
@@ -47,12 +47,6 @@ export const DeliveryContainer = styled.section`
 
   div {
     border: 1.5px solid;
-    /* border-image-slice: 1;
-    border-image-source: linear-gradient(
-      to right,
-      ${(props) => props.theme.yellow},
-      ${(props) => props.theme.purple}
-    ); */
 
     border-radius: 6px 36px;
     padding: 0 3rem;

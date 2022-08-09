@@ -6,14 +6,14 @@ export const HomeContainer = styled.main`
   flex-direction: column;
   margin: 0 auto;
 
-  padding: 0 10rem;
+  padding: 6rem 10rem;
 
   @media (max-width: 1200px) {
-    padding: 0 4rem;
+    padding: 6rem 4rem;
   }
 
   @media (max-width: 600px) {
-    padding: 0 2rem;
+    padding: 6rem 2rem;
   }
 
   h2 {

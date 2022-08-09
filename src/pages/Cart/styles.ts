@@ -4,7 +4,7 @@ export const CartContainer = styled.main`
   max-width: 125rem;
   margin: 0 auto;
 
-  padding: 2rem 10rem;
+  padding: 8rem 10rem;
 
   h2 {
     font-size: 1.125rem;
@@ -16,15 +16,15 @@ export const CartContainer = styled.main`
   }
 
   @media (max-width: 1200px) {
-    padding: 0 4rem;
+    padding: 6rem 4rem;
   }
 
   @media (max-width: 600px) {
-    padding: 0 2rem;
+    padding: 8rem 2rem;
   }
 
   @media (max-width: 420px) {
-    padding: 0.75rem 1rem;
+    padding: 8rem 1rem;
   }
 
   form {
