@@ -12,16 +12,18 @@ interface HeaderProps {
 function Header({ changeColor }: HeaderProps) {
   return (
     <HeaderContainer changeColor={changeColor}>
-      <img src={logo} alt="Coffee Delivery Logo" />
+      <nav>
+        <img src={logo} alt="Coffee Delivery Logo" />
 
-      <div>
-        <LocationSpan>
-          <MapPin size={22} weight="fill" />
-          <p> Porto Alegre, RS </p>
-        </LocationSpan>
+        <div>
+          <LocationSpan>
+            <MapPin size={22} weight="fill" />
+            <p> Porto Alegre, RS </p>
+          </LocationSpan>
 
-        <CartButton />
-      </div>
+          <CartButton />
+        </div>
+      </nav>
     </HeaderContainer>
   );
 }

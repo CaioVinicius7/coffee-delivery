@@ -6,11 +6,7 @@ interface HeaderContainerProps {
 }
 
 export const HeaderContainer = styled.header<HeaderContainerProps>`
-  max-width: 125rem;
-  margin: 0 auto;
-
   height: 6.5rem;
-  padding: 2rem 10rem;
   font-family: "Roboto", sans-serif;
 
   display: flex;
@@ -21,25 +17,38 @@ export const HeaderContainer = styled.header<HeaderContainerProps>`
     props.changeColor ? darken(0.02, props.theme.background) : "transparent"};
 
   box-shadow: ${(props) =>
-    props.changeColor ? "0 0 0 1px rgba(0, 0, 0, 0.1)" : "transparent"};
-  position: fixed;
-  z-index: 99999;
-  width: 100%;
+    props.changeColor ? "0 0 0 0.75px rgba(0, 0, 0, 0.1)" : "transparent"};
 
-  div {
+  z-index: 99999;
+  position: fixed;
+  width: 100vw;
+
+  nav {
+    max-width: 125rem;
+    margin: 0 auto;
+    padding: 2rem 10rem;
+
+    flex: 1;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    gap: 1rem;
-  }
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  @media (max-width: 1200px) {
-    padding: 2rem 4rem;
-  }
+      gap: 1rem;
+    }
 
-  @media (max-width: 600px) {
-    padding: 2rem 2rem;
+    @media (max-width: 1200px) {
+      padding: 2rem 4rem;
+    }
+
+    @media (max-width: 600px) {
+      padding: 2rem 2rem;
+    }
   }
 `;
 
