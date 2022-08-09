@@ -13,7 +13,7 @@ interface Coffee {
   tags: string[];
   description: string;
   price: number;
-  imagePath: string;
+  imageUrl: string;
 }
 
 function Home() {

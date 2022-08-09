@@ -12,7 +12,7 @@ function Coffee() {
 
   return (
     <CoffeeContainer>
-      <img src={coffee} alt="Coffee" />
+      <img src="https://i.imgur.com/5TxBIvF.png" alt="Coffee" />
 
       <CoffeeInfos>
         <div>

@@ -9,12 +9,12 @@ interface CoffeeCardProps {
     tags: string[];
     description: string;
     price: number;
-    imagePath: string;
+    imageUrl: string;
   };
 }
 
 function CoffeeCard({ coffee }: CoffeeCardProps) {
-  const { name, tags, description, price, imagePath } = coffee;
+  const { name, tags, description, price, imageUrl } = coffee;
 
   const priceFormatted = price.toLocaleString("pt-br", {
     minimumFractionDigits: 2
@@ -22,7 +22,7 @@ function CoffeeCard({ coffee }: CoffeeCardProps) {
 
   return (
     <Card>
-      <img src={imagePath} alt="Coffee" />
+      <img src={`${imageUrl}`} alt="Coffee" />
 
       <div>
         {tags.map((tag) => {
