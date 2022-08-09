@@ -3,22 +3,37 @@ import { NumberInput } from "../../../../components/NumberInput";
 
 import { Card } from "./styles";
 
-import coffee from "../../../../assets/coffee-1.svg";
+interface CoffeeCardProps {
+  coffee: {
+    name: string;
+    tags: string[];
+    description: string;
+    price: number;
+    imagePath: string;
+  };
+}
 
-function CoffeeCard() {
+function CoffeeCard({ coffee }: CoffeeCardProps) {
+  const { name, tags, description, price, imagePath } = coffee;
+
+  const priceFormatted = price.toLocaleString("pt-br", {
+    minimumFractionDigits: 2
+  });
+
   return (
     <Card>
-      <img src={coffee} alt="Coffee" />
+      <img src={imagePath} alt="Coffee" />
 
       <div>
-        <span> Tradicional </span>
-        <span> Tradicional </span>
+        {tags.map((tag) => {
+          return <span key={tag}> {tag} </span>;
+        })}
       </div>
-      <h3> Expresso Tradicional </h3>
-      <p> O tradicional café feito com água quente e grãos moídos </p>
+      <h3> {name} </h3>
+      <p> {description} </p>
 
       <footer>
-        <span> 9,90 </span>
+        <span> {priceFormatted} </span>
 
         <div>
           <NumberInput />
