@@ -2,7 +2,6 @@ import { NumberInput } from "../../../../components/NumberInput";
 
 import { CoffeeContainer, CoffeeInfos, RemoveButton } from "./styles";
 
-import coffee from "../../../../assets/coffee-1.svg";
 import { Trash } from "phosphor-react";
 
 function Coffee() {

@@ -42,6 +42,10 @@ export const CoffeesAndConfirmPaymentCard = styled.div`
   padding: 2.5rem 3.5rem;
   border-radius: 6px 44px;
   background: ${(props) => props.theme["base-card"]};
+
+  @media (max-width: 500px) {
+    padding: 2.5rem 1.25rem;
+  }
 `;
 
 export const TotalValue = styled.div`

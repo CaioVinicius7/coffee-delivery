@@ -9,6 +9,10 @@ export const BaseCard = styled.section`
 
   display: grid;
   gap: 2rem;
+
+  @media (max-width: 500px) {
+    padding: 2.5rem 1.25rem;
+  }
 `;
 
 interface CardProps {
