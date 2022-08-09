@@ -1,7 +1,12 @@
+import { useContext } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+
 import { CartButton } from "../../../../components/CartButton";
 import { NumberInput } from "../../../../components/NumberInput";
 
 import { Card } from "./styles";
+
+import { CartContext } from "../../../../contexts/CartContext";
 
 interface CoffeeCardProps {
   coffee: {
@@ -13,15 +18,40 @@ interface CoffeeCardProps {
   };
 }
 
+interface CoffeeCardInputs {
+  quantity: number;
+}
+
 function CoffeeCard({ coffee }: CoffeeCardProps) {
   const { name, tags, description, price, imageUrl } = coffee;
+
+  const coffeeCardForm = useForm<CoffeeCardInputs>({
+    defaultValues: {
+      quantity: 1
+    }
+  });
+
+  const { handleSubmit, reset } = coffeeCardForm;
+
+  const { addNewItem } = useContext(CartContext);
 
   const priceFormatted = price.toLocaleString("pt-br", {
     minimumFractionDigits: 2
   });
 
+  function HandleAddNewItemToCart({ quantity }: CoffeeCardInputs) {
+    addNewItem({
+      name,
+      price,
+      quantity,
+      imageUrl
+    });
+
+    reset();
+  }
+
   return (
-    <Card>
+    <Card onSubmit={handleSubmit(HandleAddNewItemToCart)}>
       <img src={`${imageUrl}`} alt="Coffee" />
 
       <div>
@@ -36,8 +66,10 @@ function CoffeeCard({ coffee }: CoffeeCardProps) {
         <span> {priceFormatted} </span>
 
         <div>
-          <NumberInput />
-          <CartButton colorScheme="purple" />
+          <FormProvider {...coffeeCardForm}>
+            <NumberInput />
+          </FormProvider>
+          <CartButton colorScheme="purple" type="submit" />
         </div>
       </footer>
     </Card>

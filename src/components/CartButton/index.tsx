@@ -1,23 +1,24 @@
+import { ButtonHTMLAttributes, useContext } from "react";
 import { ShoppingCart } from "phosphor-react";
 
 import { EmptyCartButton, FullCartButton } from "./styles";
 
-interface CartButtonProps {
-  itemsQuantity?: number;
+import { CartContext } from "../../contexts/CartContext";
+
+interface CartButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   colorScheme?: "yellow" | "purple";
 }
 
-function CartButton({
-  itemsQuantity,
-  colorScheme = "yellow"
-}: CartButtonProps) {
-  return itemsQuantity ? (
-    <FullCartButton>
+function CartButton({ colorScheme = "yellow", ...props }: CartButtonProps) {
+  const { itemsQuantity } = useContext(CartContext);
+
+  return itemsQuantity && colorScheme !== "purple" ? (
+    <FullCartButton {...props}>
       <ShoppingCart size={22} weight="fill" />
       <span> {itemsQuantity} </span>
     </FullCartButton>
   ) : (
-    <EmptyCartButton colorScheme={colorScheme}>
+    <EmptyCartButton colorScheme={colorScheme} {...props}>
       <ShoppingCart size={22} weight="fill" />
     </EmptyCartButton>
   );

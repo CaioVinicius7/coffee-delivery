@@ -1,9 +1,11 @@
+import { useContext } from "react";
 import { MapPin } from "phosphor-react";
 
 import { CartButton } from "../CartButton";
 import { HeaderContainer, LocationSpan } from "./styles";
 
 import logo from "../../assets/logo.svg";
+import { CartContext } from "../../contexts/CartContext";
 
 interface HeaderProps {
   changeColor: boolean;

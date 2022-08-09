@@ -1,18 +1,19 @@
 import { FormEvent, useState } from "react";
 import { Minus, Plus } from "phosphor-react";
+import { useFormContext } from "react-hook-form";
 
 import { NumberInputContainer } from "./styles";
 
 function NumberInput() {
-  const [quantity, setQuantity] = useState(1);
+  const { register, setValue, getValues } = useFormContext();
+
+  let quantity = getValues("quantity");
 
   function handleSubtractQuantity(event: FormEvent) {
     event.preventDefault();
 
     if (quantity > 1) {
-      setQuantity((state) => {
-        return --state;
-      });
+      setValue("quantity", --quantity);
     }
   }
 
@@ -20,9 +21,7 @@ function NumberInput() {
     event.preventDefault();
 
     if (quantity < 99) {
-      setQuantity((state) => {
-        return ++state;
-      });
+      setValue("quantity", ++quantity);
     }
   }
 
@@ -31,7 +30,13 @@ function NumberInput() {
       <button onClick={handleSubtractQuantity}>
         <Minus size={18} weight="fill" />
       </button>
-      <input type="number" min="1" max="99" value={quantity} disabled />
+      <input
+        type="number"
+        min="1"
+        max="99"
+        disabled
+        {...register("quantity", { valueAsNumber: true })}
+      />
       <button onClick={handleAddQuantity}>
         <Plus size={18} weight="fill" />
       </button>

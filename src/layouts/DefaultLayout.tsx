@@ -8,7 +8,7 @@ function DefaultLayout() {
 
   useEffect(() => {
     function verifyScrollPosition() {
-      window.scrollY > 10 ? setChangeColor(true) : setChangeColor(false);
+      window.scrollY > 1 ? setChangeColor(true) : setChangeColor(false);
     }
 
     window.addEventListener("scroll", verifyScrollPosition);

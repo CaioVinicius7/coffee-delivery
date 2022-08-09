@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Card = styled.div`
+export const Card = styled.form`
   width: 16rem;
   height: 18.775rem;
   margin-top: 3rem;
