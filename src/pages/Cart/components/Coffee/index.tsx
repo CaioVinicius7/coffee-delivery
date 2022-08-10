@@ -1,26 +1,38 @@
-import { NumberInput } from "../../../../components/NumberInput";
+import { NumberInput } from "../NumberInput";
 
 import { CoffeeContainer, CoffeeInfos, RemoveButton } from "./styles";
 
 import { Trash } from "phosphor-react";
 
-function Coffee() {
+interface CoffeeProps {
+  name: string;
+  price: number;
+  quantity: number;
+  imageUrl: string;
+}
+
+function Coffee({ name, price, quantity, imageUrl }: CoffeeProps) {
+  const priceFormatted = price.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL"
+  });
+
   function handleRemoveCoffee(event: any) {
     event.preventDefault();
   }
 
   return (
     <CoffeeContainer>
-      <img src="https://i.imgur.com/5TxBIvF.png" alt="Coffee" />
+      <img src={imageUrl} alt="Coffee" />
 
       <CoffeeInfos>
         <div>
-          <span> Expresso Tradicional </span>
-          <strong> R$ 9,90 </strong>
+          <span> {name} </span>
+          <strong> {priceFormatted} </strong>
         </div>
 
         <div>
-          <NumberInput />
+          <NumberInput quantity={quantity} />
           <RemoveButton onClick={handleRemoveCoffee}>
             <Trash size={18} />
             <span>Remover</span>

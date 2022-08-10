@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 
 import { CartButton } from "../../../../components/CartButton";
-import { NumberInput } from "../../../../components/NumberInput";
 
 import { Card } from "./styles";
 
 import { CartContext } from "../../../../contexts/CartContext";
+import { NumberInputCard } from "../NumberInputCard";
 
 interface CoffeeCardProps {
   coffee: {
@@ -67,7 +67,7 @@ function CoffeeCard({ coffee }: CoffeeCardProps) {
 
         <div>
           <FormProvider {...coffeeCardForm}>
-            <NumberInput />
+            <NumberInputCard />
           </FormProvider>
           <CartButton colorScheme="purple" type="submit" />
         </div>

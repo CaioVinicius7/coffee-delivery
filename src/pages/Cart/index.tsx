@@ -1,32 +1,69 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollar,
-  MapPinLine,
-  Money
-} from "phosphor-react";
-import { AddressAndPaymentData } from "./components/AddressAndPaymentData";
+import { Bag } from "phosphor-react";
+import { useContext } from "react";
+import { useForm, FormProvider } from "react-hook-form";
 
 import { Coffee } from "./components/Coffee";
+import { AddressAndPaymentData } from "./components/AddressAndPaymentData";
+
+import { CartContext } from "../../contexts/CartContext";
 
 import {
   CartContainer,
   CoffeesAndConfirmPaymentCard,
+  EmptyCart,
   TotalValue
 } from "./styles";
 
+interface CardForm {
+  cep: string;
+  street: string;
+  number: number;
+  complement: string;
+  neighborhood: string;
+  city: string;
+  uf: string;
+}
+
 function Cart() {
+  const { itemsQuantity, items } = useContext(CartContext);
+
+  const deliveryForm = useForm<CardForm>();
+
+  const { handleSubmit } = deliveryForm;
+
+  function handleCompletePurchase(data: any) {
+    console.log(data);
+  }
+
   return (
     <CartContainer>
-      <form>
-        <AddressAndPaymentData />
+      <form onSubmit={handleSubmit(handleCompletePurchase)}>
+        <FormProvider {...deliveryForm}>
+          <AddressAndPaymentData />
+        </FormProvider>
 
         <aside>
           <h2> Cafés Selecionados </h2>
           <CoffeesAndConfirmPaymentCard>
             <div>
-              <Coffee />
-              <Coffee />
+              {itemsQuantity ? (
+                items.map((coffee) => {
+                  return (
+                    <Coffee
+                      key={coffee.name}
+                      name={coffee.name}
+                      price={coffee.price}
+                      quantity={coffee.quantity}
+                      imageUrl={coffee.imageUrl}
+                    />
+                  );
+                })
+              ) : (
+                <EmptyCart>
+                  <Bag size={80} />
+                  <span>Parece que você ainda não escolheu nenhum café!</span>
+                </EmptyCart>
+              )}
             </div>
 
             <TotalValue>
@@ -45,7 +82,7 @@ function Cart() {
                 <strong> R$ 33,20 </strong>
               </div>
 
-              <button>Confirmar Pedido</button>
+              <button type="submit">Confirmar Pedido</button>
             </TotalValue>
           </CoffeesAndConfirmPaymentCard>
         </aside>

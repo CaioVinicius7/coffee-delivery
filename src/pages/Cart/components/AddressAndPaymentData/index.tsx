@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 import {
   Bank,
   CreditCard,
@@ -17,10 +18,12 @@ import {
   PaymentCard
 } from "./styles";
 
+type PaymentType = "Credit" | "Debit" | "Money";
+
 function AddressAndPaymentData() {
   const [payment, setPayment] = useState("");
 
-  type PaymentType = "Credit" | "Debit" | "Money";
+  const { register } = useFormContext();
 
   function handleSetPaymentType(event: any, type: PaymentType) {
     event.preventDefault();
@@ -43,25 +46,37 @@ function AddressAndPaymentData() {
 
         <InputGroup>
           <div>
-            <input placeholder="CEP" type="text" />
+            <input placeholder="CEP" type="text" {...register("cep")} />
           </div>
 
           <div>
-            <input placeholder="Rua" type="text" />
+            <input placeholder="Rua" type="text" {...register("street")} />
           </div>
 
           <div>
-            <input placeholder="Número" type="text" />
+            <input
+              placeholder="Número"
+              type="number"
+              {...register("number", { valueAsNumber: true })}
+            />
             <div>
-              <input placeholder="Complemento" type="text" />
+              <input
+                placeholder="Complemento"
+                type="text"
+                {...register("complement")}
+              />
               <span> Opcional </span>
             </div>
           </div>
 
           <div>
-            <input placeholder="Bairro" type="text" />
-            <input placeholder="Cidade" type="text" />
-            <input placeholder="UF" type="text" />
+            <input
+              placeholder="Bairro"
+              type="text"
+              {...register("neighborhood")}
+            />
+            <input placeholder="Cidade" type="text" {...register("city")} />
+            <input placeholder="UF" type="text" {...register("uf")} />
           </div>
         </InputGroup>
       </BaseCard>

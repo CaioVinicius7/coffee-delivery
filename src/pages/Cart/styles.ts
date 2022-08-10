@@ -48,6 +48,22 @@ export const CoffeesAndConfirmPaymentCard = styled.div`
   }
 `;
 
+export const EmptyCart = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 4rem;
+
+  text-align: center;
+  color: ${(props) => props.theme["base-subtitle"]};
+
+  span {
+    font-size: 1.25rem;
+  }
+`;
+
 export const TotalValue = styled.div`
   margin-top: 1.5rem;
 
