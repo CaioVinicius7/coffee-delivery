@@ -18,6 +18,10 @@ interface CoffeeSummary {
 interface CartContextType {
   items: CoffeeSummary[];
   itemsQuantity: number;
+  totalValue: {
+    itemsValue: number;
+    withDelivery: number;
+  };
   addNewItemToCart: (item: CoffeeSummary) => void;
   removeItemFromCart: (itemName: string) => void;
   getItemInfosByName: (itemName: string) => CoffeeSummary | any;
@@ -37,6 +41,15 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   });
 
   const { items, itemsQuantity } = cartState;
+
+  const itemsValue = cartState.items.reduce((total, element) => {
+    return (total += element.price * element.quantity);
+  }, 0);
+
+  const totalValue = {
+    itemsValue,
+    withDelivery: itemsValue + 3.5
+  };
 
   function addNewItemToCart(item: CoffeeSummary) {
     dispatch(addNewItemToCartAction(item));
@@ -59,6 +72,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       value={{
         items,
         itemsQuantity,
+        totalValue,
         addNewItemToCart,
         removeItemFromCart,
         getItemInfosByName,

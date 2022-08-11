@@ -25,7 +25,18 @@ interface CardForm {
 }
 
 function Cart() {
-  const { itemsQuantity, items } = useContext(CartContext);
+  const { itemsQuantity, items, totalValue } = useContext(CartContext);
+
+  const itemsValueFormatted = totalValue.itemsValue.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL"
+  });
+
+  const totalValueWithDeliveryFormatted =
+    totalValue.withDelivery.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL"
+    });
 
   const deliveryForm = useForm<CardForm>();
 
@@ -61,7 +72,7 @@ function Cart() {
             <TotalValue>
               <div>
                 <span> Total de itens </span>
-                <span> R$ 29,70 </span>
+                <span> {itemsValueFormatted} </span>
               </div>
 
               <div>
@@ -71,7 +82,7 @@ function Cart() {
 
               <div>
                 <strong> Total </strong>
-                <strong> R$ 33,20 </strong>
+                <strong> {totalValueWithDeliveryFormatted} </strong>
               </div>
 
               <button type="submit">Confirmar Pedido</button>
