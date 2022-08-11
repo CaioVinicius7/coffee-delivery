@@ -1,6 +1,8 @@
 import { Bag } from "phosphor-react";
 import { useContext } from "react";
 import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as zod from "zod";
 
 import { Coffee } from "./components/Coffee";
 import { AddressAndPaymentData } from "./components/AddressAndPaymentData";
@@ -14,15 +16,31 @@ import {
   TotalValue
 } from "./styles";
 
-interface CardForm {
-  cep: string;
-  street: string;
-  number: number;
-  complement: string;
-  neighborhood: string;
-  city: string;
-  uf: string;
-}
+const addressAndPaymentFormValidationSchema = zod.object({
+  cep: zod.string().length(9, "Preencha o campo CEP corretamente."),
+  street: zod
+    .string()
+    .min(5, "O campo rua precisa ter no mínimo 5 caracteres.")
+    .max(80, "O campo rua pode ter no máximo 100 caracteres."),
+  number: zod
+    .number()
+    .min(1, "O campo número precisa ter no mínimo 1 caractere.")
+    .max(8, "O campo número precisa ter no máximo 8 caracteres."),
+  complement: zod.string().optional(),
+  neighborhood: zod
+    .string()
+    .min(5, "O campo bairro precisa ter no mínimo 5 caracteres.")
+    .max(50, "O campo bairro pode ter no máximo 100 caracteres."),
+  city: zod
+    .string()
+    .min(5, "O campo cidade precisa ter no mínimo 5 caracteres.")
+    .max(50, "O campo pode ter no máximo 100 caracteres."),
+  uf: zod.string().length(2, "O campo UF precisa ter 2 caracteres.")
+});
+
+type AddressAndPayment = zod.infer<
+  typeof addressAndPaymentFormValidationSchema
+>;
 
 function Cart() {
   const { itemsQuantity, items, totalValue } = useContext(CartContext);
@@ -38,13 +56,17 @@ function Cart() {
       currency: "BRL"
     });
 
-  const deliveryForm = useForm<CardForm>();
+  const deliveryForm = useForm<AddressAndPayment>({
+    resolver: zodResolver(addressAndPaymentFormValidationSchema)
+  });
 
   const { handleSubmit } = deliveryForm;
 
   function handleCompletePurchase(data: any) {
     console.log(data);
   }
+
+  const isDisabled = !itemsQuantity;
 
   return (
     <CartContainer>
@@ -85,7 +107,9 @@ function Cart() {
                 <strong> {totalValueWithDeliveryFormatted} </strong>
               </div>
 
-              <button type="submit">Confirmar Pedido</button>
+              <button type="submit" disabled={isDisabled}>
+                Confirmar Pedido
+              </button>
             </TotalValue>
           </CoffeesAndConfirmPaymentCard>
         </aside>

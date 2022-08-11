@@ -98,8 +98,12 @@ export const TotalValue = styled.div`
     color: ${(props) => props.theme.white};
     background: ${(props) => props.theme.yellow};
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: ${(props) => props.theme["yellow-dark"]};
+    }
+
+    &:disabled:hover {
+      cursor: not-allowed;
     }
   }
 `;

@@ -34,6 +34,7 @@ function AddressAndPaymentData() {
   return (
     <AddressAndPaymentDataContainer>
       <h2> Complete seu pedido </h2>
+
       <BaseCard>
         <CardHeader iconColor="yellow-dark">
           <MapPinLine size={22} />
@@ -46,23 +47,35 @@ function AddressAndPaymentData() {
 
         <InputGroup>
           <div>
-            <input placeholder="CEP" type="text" {...register("cep")} />
+            <input
+              placeholder="CEP"
+              type="text"
+              autoComplete="off"
+              {...register("cep")}
+            />
           </div>
 
           <div>
-            <input placeholder="Rua" type="text" {...register("street")} />
+            <input
+              placeholder="Rua"
+              type="text"
+              autoComplete="off"
+              {...register("street")}
+            />
           </div>
 
           <div>
             <input
               placeholder="Número"
               type="number"
+              min="1"
               {...register("number", { valueAsNumber: true })}
             />
             <div>
               <input
                 placeholder="Complemento"
                 type="text"
+                autoComplete="off"
                 {...register("complement")}
               />
               <span> Opcional </span>
@@ -73,10 +86,22 @@ function AddressAndPaymentData() {
             <input
               placeholder="Bairro"
               type="text"
+              autoComplete="off"
               {...register("neighborhood")}
             />
-            <input placeholder="Cidade" type="text" {...register("city")} />
-            <input placeholder="UF" type="text" {...register("uf")} />
+            <input
+              placeholder="Cidade"
+              type="text"
+              autoComplete="off"
+              {...register("city")}
+            />
+            <input
+              placeholder="UF"
+              type="text"
+              autoComplete="off"
+              maxLength={2}
+              {...register("uf")}
+            />
           </div>
         </InputGroup>
       </BaseCard>
