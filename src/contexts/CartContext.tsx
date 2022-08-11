@@ -51,6 +51,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       if (storedStateAsJSON) {
         return JSON.parse(storedStateAsJSON);
       }
+
+      return {
+        items: [],
+        itemsQuantity: 0
+      };
     }
   );
 
