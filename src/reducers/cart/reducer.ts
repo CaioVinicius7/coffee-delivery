@@ -29,7 +29,22 @@ export function cartReducers(state: CartState, action: Action) {
   switch (action.type) {
     case ActionTypes.ADD_NEW_ITEM: {
       return produce(state, (draft) => {
-        draft.items.push(action.payload!.item);
+        const itemAlreadyInCart = draft.items.find(
+          (coffee) => coffee.name === action.payload!.item.name
+        );
+
+        if (itemAlreadyInCart) {
+          draft.items.map((coffee) => {
+            if (coffee.name === action.payload!.item.name) {
+              return (coffee.quantity += action.payload!.item.quantity);
+            }
+
+            return coffee;
+          });
+        } else {
+          draft.items.push(action.payload!.item);
+        }
+
         draft.itemsQuantity = calcItemsQuantity(draft.items);
       });
     }
