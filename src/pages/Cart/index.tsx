@@ -24,8 +24,7 @@ const addressAndPaymentFormValidationSchema = zod.object({
     .max(80, "O campo rua pode ter no máximo 100 caracteres."),
   number: zod
     .number()
-    .min(1, "O campo número precisa ter no mínimo 1 caractere.")
-    .max(8, "O campo número precisa ter no máximo 8 caracteres."),
+    .min(1, "O campo número precisa ter no mínimo 1 caractere."),
   complement: zod.string().optional(),
   neighborhood: zod
     .string()
