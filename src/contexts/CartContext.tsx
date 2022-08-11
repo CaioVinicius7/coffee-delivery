@@ -3,7 +3,8 @@ import { createContext, ReactNode, useReducer } from "react";
 import {
   addNewItemToCartAction,
   removeItemFromCartAction,
-  alterQuantityAction
+  alterQuantityAction,
+  cleanCartAction
 } from "../reducers/cart/actions";
 
 import { cartReducers } from "../reducers/cart/reducer";
@@ -26,6 +27,7 @@ interface CartContextType {
   removeItemFromCart: (itemName: string) => void;
   getItemInfosByName: (itemName: string) => CoffeeSummary | any;
   alterItemQuantity: (itemName: string, newQuantity: number) => void;
+  cleanCart: () => void;
 }
 
 export const CartContext = createContext({} as CartContextType);
@@ -67,6 +69,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(alterQuantityAction(itemName, newQuantity));
   }
 
+  function cleanCart() {
+    dispatch(cleanCartAction());
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -76,7 +82,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         addNewItemToCart,
         removeItemFromCart,
         getItemInfosByName,
-        alterItemQuantity
+        alterItemQuantity,
+        cleanCart
       }}
     >
       {children}

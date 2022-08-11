@@ -4,7 +4,8 @@ import { Coffee } from "./reducer";
 export enum ActionTypes {
   ADD_NEW_ITEM = "ADD_NEW_ITEM",
   REMOVE_ITEM = "REMOTE_ITEM",
-  ALTER_QUANTITY = "ALTER_QUANTITY"
+  ALTER_QUANTITY = "ALTER_QUANTITY",
+  CLEAN_CART = "CLEAN_CART"
 }
 
 export function addNewItemToCartAction(item: Coffee) {
@@ -32,5 +33,11 @@ export function alterQuantityAction(itemName: string, newQuantity: number) {
       itemName,
       newQuantity
     }
+  };
+}
+
+export function cleanCartAction() {
+  return {
+    type: ActionTypes.CLEAN_CART
   };
 }

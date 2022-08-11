@@ -1,6 +1,7 @@
 import { Bag } from "phosphor-react";
 import { useContext, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from "zod";
 
@@ -46,7 +47,10 @@ export type PaymentType = "Credit" | "Debit" | "Money";
 function Cart() {
   const [paymentType, setPaymentType] = useState("");
 
-  const { itemsQuantity, items, totalValue } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const { itemsQuantity, items, totalValue, cleanCart } =
+    useContext(CartContext);
 
   const itemsValueFormatted = totalValue.itemsValue.toLocaleString("pt-br", {
     style: "currency",
@@ -72,6 +76,10 @@ function Cart() {
     });
 
     localStorage.setItem("@coffee-delivery: delivery-data-1.0.0", purchaseJson);
+
+    cleanCart();
+
+    navigate("/success");
   }
 
   const isDisabled = !itemsQuantity || paymentType === "";

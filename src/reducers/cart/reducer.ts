@@ -60,6 +60,13 @@ export function cartReducers(state: CartState, action: Action) {
       });
     }
 
+    case ActionTypes.CLEAN_CART: {
+      return produce(state, (draft) => {
+        draft.items = [];
+        draft.itemsQuantity = 0;
+      });
+    }
+
     default: {
       return state;
     }
