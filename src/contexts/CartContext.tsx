@@ -1,9 +1,14 @@
 import { createContext, ReactNode, useReducer } from "react";
-import { addNewItemAction } from "../reducers/cart/actions";
+
+import {
+  addNewItemToCartAction,
+  removeItemFromCartAction,
+  alterQuantityAction
+} from "../reducers/cart/actions";
 
 import { cartReducers } from "../reducers/cart/reducer";
 
-interface Coffee {
+interface CoffeeSummary {
   name: string;
   price: number;
   quantity: number;
@@ -11,9 +16,12 @@ interface Coffee {
 }
 
 interface CartContextType {
-  items: Coffee[];
+  items: CoffeeSummary[];
   itemsQuantity: number;
-  addNewItem: (item: Coffee) => any;
+  addNewItemToCart: (item: CoffeeSummary) => void;
+  removeItemFromCart: (itemName: string) => void;
+  getItemInfosByName: (itemName: string) => CoffeeSummary | any;
+  alterItemQuantity: (itemName: string, newQuantity: number) => void;
 }
 
 export const CartContext = createContext({} as CartContextType);
@@ -30,12 +38,33 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const { items, itemsQuantity } = cartState;
 
-  function addNewItem(item: Coffee) {
-    dispatch(addNewItemAction(item));
+  function addNewItemToCart(item: CoffeeSummary) {
+    dispatch(addNewItemToCartAction(item));
+  }
+
+  function removeItemFromCart(itemName: string) {
+    dispatch(removeItemFromCartAction(itemName));
+  }
+
+  function getItemInfosByName(itemName: string) {
+    return items.find((coffee) => coffee.name === itemName);
+  }
+
+  function alterItemQuantity(itemName: string, newQuantity: number) {
+    dispatch(alterQuantityAction(itemName, newQuantity));
   }
 
   return (
-    <CartContext.Provider value={{ items, itemsQuantity, addNewItem }}>
+    <CartContext.Provider
+      value={{
+        items,
+        itemsQuantity,
+        addNewItemToCart,
+        removeItemFromCart,
+        getItemInfosByName,
+        alterItemQuantity
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

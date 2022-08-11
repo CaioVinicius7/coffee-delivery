@@ -1,17 +1,21 @@
+import { useContext } from "react";
+import { Trash } from "phosphor-react";
+
 import { NumberInput } from "../NumberInput";
 
 import { CoffeeContainer, CoffeeInfos, RemoveButton } from "./styles";
 
-import { Trash } from "phosphor-react";
+import { CartContext } from "../../../../contexts/CartContext";
 
 interface CoffeeProps {
   name: string;
-  price: number;
-  quantity: number;
-  imageUrl: string;
 }
 
-function Coffee({ name, price, quantity, imageUrl }: CoffeeProps) {
+function Coffee({ name }: CoffeeProps) {
+  const { getItemInfosByName, removeItemFromCart } = useContext(CartContext);
+
+  const { price, quantity, imageUrl } = getItemInfosByName(name);
+
   const priceFormatted = price.toLocaleString("pt-br", {
     style: "currency",
     currency: "BRL"
@@ -19,6 +23,8 @@ function Coffee({ name, price, quantity, imageUrl }: CoffeeProps) {
 
   function handleRemoveCoffee(event: any) {
     event.preventDefault();
+
+    removeItemFromCart(name);
   }
 
   return (
@@ -32,7 +38,7 @@ function Coffee({ name, price, quantity, imageUrl }: CoffeeProps) {
         </div>
 
         <div>
-          <NumberInput quantity={quantity} />
+          <NumberInput name={name} quantity={quantity} />
           <RemoveButton onClick={handleRemoveCoffee}>
             <Trash size={18} />
             <span>Remover</span>

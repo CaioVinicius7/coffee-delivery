@@ -48,15 +48,7 @@ function Cart() {
             <div>
               {itemsQuantity ? (
                 items.map((coffee) => {
-                  return (
-                    <Coffee
-                      key={coffee.name}
-                      name={coffee.name}
-                      price={coffee.price}
-                      quantity={coffee.quantity}
-                      imageUrl={coffee.imageUrl}
-                    />
-                  );
+                  return <Coffee key={coffee.name} name={coffee.name} />;
                 })
               ) : (
                 <EmptyCart>

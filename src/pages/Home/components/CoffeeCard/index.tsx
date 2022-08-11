@@ -33,14 +33,14 @@ function CoffeeCard({ coffee }: CoffeeCardProps) {
 
   const { handleSubmit, reset } = coffeeCardForm;
 
-  const { addNewItem } = useContext(CartContext);
+  const { addNewItemToCart } = useContext(CartContext);
 
   const priceFormatted = price.toLocaleString("pt-br", {
     minimumFractionDigits: 2
   });
 
-  function HandleAddNewItemToCart({ quantity }: CoffeeCardInputs) {
-    addNewItem({
+  function handleAddNewItemToCart({ quantity }: CoffeeCardInputs) {
+    addNewItemToCart({
       name,
       price,
       quantity,
@@ -51,7 +51,7 @@ function CoffeeCard({ coffee }: CoffeeCardProps) {
   }
 
   return (
-    <Card onSubmit={handleSubmit(HandleAddNewItemToCart)}>
+    <Card onSubmit={handleSubmit(handleAddNewItemToCart)}>
       <img src={`${imageUrl}`} alt="Coffee" />
 
       <div>
