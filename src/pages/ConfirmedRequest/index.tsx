@@ -1,15 +1,37 @@
-import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
+import { CurrencyDollar, MapPin, Timer, Warning } from "phosphor-react";
 
 import {
   ConfirmedRequestContainer,
   DeliveryContainer,
-  IconBackground
+  IconBackground,
+  PurchaseNotComplete
 } from "./styles";
 
 import deliveryman from "../../assets/deliveryman.svg";
 
+interface deliveryInfos {
+  cep: string;
+  city: string;
+  complement: string;
+  neighborhood: string;
+  number: number;
+  paymentType: "Credit" | "Debit" | "Money";
+  street: string;
+  uf: string;
+}
+
 function ConfirmedRequest() {
-  return (
+  let deliveryInfos: deliveryInfos | undefined;
+
+  const deliveryInfosAsJson = localStorage.getItem(
+    "@coffee-delivery: delivery-data-1.0.0"
+  );
+
+  if (deliveryInfosAsJson) {
+    deliveryInfos = JSON.parse(deliveryInfosAsJson);
+  }
+
+  return deliveryInfos ? (
     <ConfirmedRequestContainer>
       <h2> Uhu! Pedido confirmado </h2>
       <span> Agora é só aguardar que logo o café chegará até você </span>
@@ -22,7 +44,10 @@ function ConfirmedRequest() {
             </IconBackground>
             <div>
               <p>
-                Entrega em <strong>Rua João Daniel Martinelli, 102 </strong>
+                Entrega em
+                <strong>
+                  {deliveryInfos.street}, {deliveryInfos.number}
+                </strong>
               </p>
               <p> Compra simples e segura </p>
             </div>
@@ -44,7 +69,17 @@ function ConfirmedRequest() {
             </IconBackground>
             <div>
               <p> Pagamento na entrega </p>
-              <strong> Cartão de Crédito </strong>
+              {deliveryInfos.paymentType === "Credit" && (
+                <strong> Cartão de crédito </strong>
+              )}
+
+              {deliveryInfos.paymentType === "Debit" && (
+                <strong> Cartão de débito </strong>
+              )}
+
+              {deliveryInfos.paymentType === "Money" && (
+                <strong> Dinheiro </strong>
+              )}
             </div>
           </div>
         </div>
@@ -52,6 +87,12 @@ function ConfirmedRequest() {
         <img src={deliveryman} alt="Deliveryman" />
       </DeliveryContainer>
     </ConfirmedRequestContainer>
+  ) : (
+    <PurchaseNotComplete>
+      <Warning size={80} />
+      <h2> Parece que você ainda não completou a sua compra! </h2>
+      <span> Volte para o carrinho para finalizar sua compra. </span>
+    </PurchaseNotComplete>
   );
 }
 

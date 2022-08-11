@@ -136,3 +136,35 @@ export const IconBackground = styled.span<IconBackgroundProps>`
   align-items: center;
   justify-content: center;
 `;
+
+export const PurchaseNotComplete = styled.main`
+  height: 100vh;
+  gap: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+
+  h2 {
+    color: ${(props) => props.theme["base-title"]};
+  }
+
+  span {
+    font-weight: 700;
+    color: ${(props) => props.theme["base-subtitle"]};
+  }
+
+  @media (max-width: 700px) {
+    h2 {
+      font-size: 1rem;
+    }
+
+    span {
+      font-size: 0.75rem;
+    }
+  }
+`;
