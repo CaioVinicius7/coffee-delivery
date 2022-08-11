@@ -46,7 +46,7 @@ function ConfirmedRequest() {
               <p>
                 Entrega em
                 <strong>
-                  {deliveryInfos.street}, {deliveryInfos.number}
+                  {` ${deliveryInfos.street}`}, {deliveryInfos.number}
                 </strong>
               </p>
               <p> Compra simples e segura </p>
