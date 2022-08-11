@@ -1,5 +1,5 @@
 import { Bag } from "phosphor-react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from "zod";
@@ -41,7 +41,11 @@ type AddressAndPayment = zod.infer<
   typeof addressAndPaymentFormValidationSchema
 >;
 
+export type PaymentType = "Credit" | "Debit" | "Money";
+
 function Cart() {
+  const [paymentType, setPaymentType] = useState("");
+
   const { itemsQuantity, items, totalValue } = useContext(CartContext);
 
   const itemsValueFormatted = totalValue.itemsValue.toLocaleString("pt-br", {
@@ -62,16 +66,24 @@ function Cart() {
   const { handleSubmit } = deliveryForm;
 
   function handleCompletePurchase(data: any) {
-    console.log(data);
+    const purchaseJson = JSON.stringify({
+      ...data,
+      paymentType
+    });
+
+    localStorage.setItem("@coffee-delivery: delivery-data-1.0.0", purchaseJson);
   }
 
-  const isDisabled = !itemsQuantity;
+  const isDisabled = !itemsQuantity || paymentType === "";
 
   return (
     <CartContainer>
       <form onSubmit={handleSubmit(handleCompletePurchase)}>
         <FormProvider {...deliveryForm}>
-          <AddressAndPaymentData />
+          <AddressAndPaymentData
+            paymentType={paymentType}
+            setPaymentType={setPaymentType}
+          />
         </FormProvider>
 
         <aside>

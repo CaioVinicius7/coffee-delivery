@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import {
   Bank,
@@ -18,17 +17,23 @@ import {
   PaymentCard
 } from "./styles";
 
-type PaymentType = "Credit" | "Debit" | "Money";
+import { PaymentType } from "../..";
 
-function AddressAndPaymentData() {
-  const [payment, setPayment] = useState("");
+interface AddressAndPaymentDataProps {
+  paymentType: string;
+  setPaymentType: (paymentType: string) => void;
+}
 
+function AddressAndPaymentData({
+  paymentType,
+  setPaymentType
+}: AddressAndPaymentDataProps) {
   const { register } = useFormContext();
 
   function handleSetPaymentType(event: any, type: PaymentType) {
     event.preventDefault();
 
-    setPayment(type);
+    setPaymentType(type);
   }
 
   return (
@@ -121,21 +126,21 @@ function AddressAndPaymentData() {
         <ButtonGroup>
           <PaymentButton
             onClick={(e) => handleSetPaymentType(e, "Credit")}
-            isActive={payment === "Credit" && true}
+            isActive={paymentType === "Credit" && true}
           >
             <CreditCard size={18} />
             <span>Cartão de crédito</span>
           </PaymentButton>
           <PaymentButton
             onClick={(e) => handleSetPaymentType(e, "Debit")}
-            isActive={payment === "Debit" && true}
+            isActive={paymentType === "Debit" && true}
           >
             <Bank size={18} />
             <span>Cartão de débito</span>
           </PaymentButton>
           <PaymentButton
             onClick={(e) => handleSetPaymentType(e, "Money")}
-            isActive={payment === "Money" && true}
+            isActive={paymentType === "Money" && true}
           >
             <Money size={18} />
             <span>Dinheiro</span>
