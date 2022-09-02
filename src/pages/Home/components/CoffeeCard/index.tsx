@@ -52,7 +52,7 @@ function CoffeeCard({ coffee }: CoffeeCardProps) {
 
   return (
     <Card onSubmit={handleSubmit(handleAddNewItemToCart)}>
-      <img src={`${imageUrl}`} alt="Coffee" />
+      <img src={imageUrl} alt="Coffee" />
 
       <div>
         {tags.map((tag) => {
