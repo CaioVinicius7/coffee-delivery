@@ -11,7 +11,7 @@ export const CartContainer = styled.main`
     font-family: "Baloo 2", sans-serif;
   }
 
-  @media (max-width: 1900px) {
+  @media (max-width: 1500px) {
     grid-template-columns: 100%;
   }
 
@@ -32,7 +32,7 @@ export const CartContainer = styled.main`
     grid-template-columns: 65% 30%;
     gap: 5rem;
 
-    @media (max-width: 1900px) {
+    @media (max-width: 1500px) {
       grid-template-columns: 100%;
     }
   }
