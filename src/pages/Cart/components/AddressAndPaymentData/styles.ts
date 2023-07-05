@@ -212,7 +212,9 @@ interface ButtonProps {
   isActive: boolean;
 }
 
-export const PaymentButton = styled.button<ButtonProps>`
+export const PaymentButton = styled.button.attrs({
+  type: "button"
+})<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;

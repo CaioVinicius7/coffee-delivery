@@ -20,9 +20,11 @@ import {
 import { PaymentType } from "../..";
 
 interface AddressAndPaymentDataProps {
-  paymentType: string;
-  setPaymentType: (paymentType: string) => void;
+  paymentType: PaymentType | null;
+  setPaymentType: (paymentType: PaymentType) => void;
 }
+
+const DEFAULT_ICONS_SIZES = 18;
 
 function AddressAndPaymentData({
   paymentType,
@@ -30,9 +32,7 @@ function AddressAndPaymentData({
 }: AddressAndPaymentDataProps) {
   const { register } = useFormContext();
 
-  function handleSetPaymentType(event: any, type: PaymentType) {
-    event.preventDefault();
-
+  function handleSetPaymentType(type: PaymentType) {
     setPaymentType(type);
   }
 
@@ -125,24 +125,26 @@ function AddressAndPaymentData({
 
         <ButtonGroup>
           <PaymentButton
-            onClick={(e) => handleSetPaymentType(e, "Credit")}
-            isActive={paymentType === "Credit" && true}
+            onClick={() => handleSetPaymentType("Credit")}
+            isActive={paymentType === "Credit"}
           >
-            <CreditCard size={18} />
+            <CreditCard size={DEFAULT_ICONS_SIZES} />
             <span>Cartão de crédito</span>
           </PaymentButton>
+
           <PaymentButton
-            onClick={(e) => handleSetPaymentType(e, "Debit")}
-            isActive={paymentType === "Debit" && true}
+            onClick={() => handleSetPaymentType("Debit")}
+            isActive={paymentType === "Debit"}
           >
-            <Bank size={18} />
+            <Bank size={DEFAULT_ICONS_SIZES} />
             <span>Cartão de débito</span>
           </PaymentButton>
+
           <PaymentButton
-            onClick={(e) => handleSetPaymentType(e, "Money")}
-            isActive={paymentType === "Money" && true}
+            onClick={() => handleSetPaymentType("Money")}
+            isActive={paymentType === "Money"}
           >
-            <Money size={18} />
+            <Money size={DEFAULT_ICONS_SIZES} />
             <span>Dinheiro</span>
           </PaymentButton>
         </ButtonGroup>

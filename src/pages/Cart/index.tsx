@@ -45,7 +45,7 @@ type AddressAndPayment = zod.infer<
 export type PaymentType = "Credit" | "Debit" | "Money";
 
 function Cart() {
-  const [paymentType, setPaymentType] = useState("");
+  const [paymentType, setPaymentType] = useState<PaymentType | null>(null);
 
   const navigate = useNavigate();
 
@@ -82,7 +82,7 @@ function Cart() {
     navigate("/success");
   }
 
-  const isDisabled = !itemsQuantity || paymentType === "";
+  const isDisabled = !itemsQuantity || paymentType === null;
 
   return (
     <CartContainer>
