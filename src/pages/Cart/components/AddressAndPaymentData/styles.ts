@@ -78,6 +78,7 @@ export const InputGroup = styled.div`
 
         span {
           position: absolute;
+          pointer-events: none;
 
           margin-left: -4rem;
           margin-top: 1rem;
