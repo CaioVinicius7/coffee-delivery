@@ -17,7 +17,7 @@ import {
   PaymentCard
 } from "./styles";
 
-import { PaymentType } from "../..";
+import { AddressAndPayment, PaymentType } from "../..";
 
 interface AddressAndPaymentDataProps {
   paymentType: PaymentType | null;
@@ -30,7 +30,7 @@ function AddressAndPaymentData({
   paymentType,
   setPaymentType
 }: AddressAndPaymentDataProps) {
-  const { register } = useFormContext();
+  const { register } = useFormContext<AddressAndPayment>();
 
   function handleSetPaymentType(type: PaymentType) {
     setPaymentType(type);

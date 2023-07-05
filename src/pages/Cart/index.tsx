@@ -38,7 +38,7 @@ const addressAndPaymentFormValidationSchema = zod.object({
   uf: zod.string().length(2, "O campo UF precisa ter 2 caracteres.")
 });
 
-type AddressAndPayment = zod.infer<
+export type AddressAndPayment = zod.infer<
   typeof addressAndPaymentFormValidationSchema
 >;
 
