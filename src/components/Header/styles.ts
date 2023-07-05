@@ -6,12 +6,9 @@ interface HeaderContainerProps {
 }
 
 export const HeaderContainer = styled.header<HeaderContainerProps>`
+  width: 100vw;
   height: 6.5rem;
   font-family: "Roboto", sans-serif;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   background: ${(props) =>
     props.changeColor ? darken(0.02, props.theme.background) : "transparent"};
@@ -19,9 +16,12 @@ export const HeaderContainer = styled.header<HeaderContainerProps>`
   box-shadow: ${(props) =>
     props.changeColor ? "0 0 0 0.75px rgba(0, 0, 0, 0.1)" : "transparent"};
 
-  z-index: 99999;
-  position: fixed;
-  width: 100vw;
+  top: 0;
+  position: sticky;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   nav {
     max-width: 125rem;
