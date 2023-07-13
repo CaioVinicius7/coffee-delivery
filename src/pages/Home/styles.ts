@@ -45,7 +45,7 @@ export const CoffeeListContainer = styled.section`
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 520px) {
     grid-template-columns: repeat(1, 1fr);
   }
 `;
