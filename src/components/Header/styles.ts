@@ -6,8 +6,10 @@ interface HeaderContainerProps {
 }
 
 export const HeaderContainer = styled.header<HeaderContainerProps>`
-  width: 100vw;
   height: 6.5rem;
+
+  z-index: 99999;
+
   font-family: "Roboto", sans-serif;
 
   background: ${(props) =>
