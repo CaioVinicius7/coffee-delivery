@@ -72,7 +72,7 @@ $ yarn
 # Rode o projeto
 $ yarn dev
 
-# O projeto ficará ativo na porta:3000 - acesse <http://localhost:3000>
+# O projeto ficará ativo na porta:3001 - acesse <http://localhost:3001>
 ```
 
 <br>
